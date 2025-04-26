@@ -1,4 +1,28 @@
-# Introduction to GitHub
+function avaliarForcaSenha(senha) {
+  const comprimento = senha.length;
+  const temMaiuscula = /[A-Z]/.test(senha);
+  const temNumero = /[0-9]/.test(senha);
+  const temEspecial = /[^A-Za-z0-9]/.test(senha);
+  
+  let pontos = 0;
+  if (comprimento >= 8) pontos += 1;
+  if (comprimento >= 12) pontos += 1;
+  if (temMaiuscula) pontos += 1;
+  if (temNumero) pontos += 1;
+  if (temEspecial) pontos += 1;
+  
+  const sugestoes = [];
+  if (comprimento < 8) sugestoes.push("⚠️ Use pelo menos 8 caracteres");
+  if (!temMaiuscula) sugestoes.push("⚠️ Adicione letras maiúsculas");
+  if (!temNumero) sugestoes.push("⚠️ Inclua números");
+  if (!temEspecial) sugestoes.push("⚠️ Use símbolos (!@#$...)");
+
+  return { forca: pontos, sugestoes };
+}
+
+module.exports = { avaliarForcaSenha };
+ 
+ # Introduction to GitHub
 
 _Get started using GitHub in less than an hour._
 
